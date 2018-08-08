@@ -9,10 +9,10 @@ from sklearn.preprocessing import Imputer
 def read_raw_application_data(path_to_kaggle_data='~/kaggle_JPFGM/Data/'):
     """Read in raw csv files of application train and test data."""
     app_train = pd.read_csv(path_to_kaggle_data + 'application_train.csv')
-    print('Training data shape: ', app_train.shape)
+    print('Raw training data shape: ', app_train.shape)
 
     app_test = pd.read_csv(path_to_kaggle_data + 'application_test.csv')
-    print('Testing data shape: ', app_test.shape)
+    print('Raw testing data shape: ', app_test.shape)
     return app_train, app_test
 
 
@@ -33,7 +33,7 @@ def wrangle_application_train_test_data(app_train, app_test):
     """Impute missing values for numerical columns based on train set"""
     imputer = Imputer(strategy='median')  # Median after fixing anomalies
 
-    train_num_cols = list(df_train._get_numeric_data().columns)
+    train_num_cols = list(df_train.drop('TARGET', axis=1)._get_numeric_data().columns)
     test_num_cols = list(df_test._get_numeric_data().columns)
 
     df_train[train_num_cols] = imputer.fit_transform(df_train[train_num_cols])
@@ -52,6 +52,10 @@ def wrangle_application_train_test_data(app_train, app_test):
 
     # Add the target back in
     df_train['TARGET'] = train_labels
+
+    print('Cleaned training data shape: ', df_train.shape)
+    print('Cleaned testing data shape: ', df_test.shape)
+
     return df_train, df_test
 
 
