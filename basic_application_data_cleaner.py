@@ -39,7 +39,8 @@ def wrangle_application_train_test_data(app_train, app_test):
     df_train[train_num_cols] = imputer.fit_transform(df_train[train_num_cols])
     df_test[test_num_cols] = imputer.transform(df_test[test_num_cols])
 
-    """Encode categorical attributes based on train set"""
+    """Encode categorical attributes based on train set
+    Add a column to indicate NaNs to keep track of Unknowns"""
     df_train = pd.get_dummies(df_train, dummy_na=True, drop_first=True)
     df_test = pd.get_dummies(df_test, dummy_na=True, drop_first=True)
 
@@ -76,9 +77,5 @@ def fix_application_data_anomalies(app_data):
 
     """make DAYS_BIRTH positive"""
     df['DAYS_BIRTH'] = abs(df['DAYS_BIRTH'])
-
-    """Impute missing values for categorical columns"""
-    categ_cols = list(df.select_dtypes(include=['object']).columns)
-    df[categ_cols].fillna(value='Unknown', inplace=True)
 
     return df
