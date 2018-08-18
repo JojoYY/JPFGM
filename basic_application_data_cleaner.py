@@ -6,13 +6,23 @@ import pandas as pd
 from sklearn.preprocessing import Imputer
 
 
+def load_cleaned_application_data(path_to_kaggle_data='~/kaggle_JPFGM/Data/'):
+    """Load cleaned version of application train and test data into dataframes."""
+    app_train, app_test = read_raw_application_data(path_to_kaggle_data)
+    df_train, df_test = wrangle_application_train_test_data(app_train, app_test)
+    return df_train, df_test
+
+
 def read_raw_application_data(path_to_kaggle_data='~/kaggle_JPFGM/Data/'):
     """Read in raw csv files of application train and test data."""
-    app_train = pd.read_csv(path_to_kaggle_data + 'application_train.csv')
-    print('Raw training data shape: ', app_train.shape)
+    app_train = pd.read_csv(path_to_kaggle_data + 'application_train.csv',
+                            index_col='SK_ID_CURR')
+    print('Raw training data size:', app_train.shape)
 
-    app_test = pd.read_csv(path_to_kaggle_data + 'application_test.csv')
-    print('Raw testing data shape: ', app_test.shape)
+    app_test = pd.read_csv(path_to_kaggle_data + 'application_test.csv',
+                           index_col='SK_ID_CURR')
+    print('Raw test data size:', app_test.shape)
+
     return app_train, app_test
 
 
@@ -27,8 +37,8 @@ def wrangle_application_train_test_data(app_train, app_test):
     df_test = app_test.copy()
 
     """Transformations that are the same for train and test set"""
-    df_train = fix_application_data_anomalies(df_train)
-    df_test = fix_application_data_anomalies(df_test)
+    df_train = _fix_application_data_anomalies(df_train)
+    df_test = _fix_application_data_anomalies(df_test)
 
     """Impute missing values for numerical columns based on train set"""
     imputer = Imputer(strategy='median')  # Median after fixing anomalies
@@ -60,7 +70,7 @@ def wrangle_application_train_test_data(app_train, app_test):
     return df_train, df_test
 
 
-def fix_application_data_anomalies(app_data):
+def _fix_application_data_anomalies(app_data):
     """Wrangle application data column anomalies.
 
     Modifies column values and adds and deletes columns, only if it pertains exactly as stated
