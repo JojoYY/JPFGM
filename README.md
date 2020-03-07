@@ -6,9 +6,8 @@
 ## Table of Contents
 1. [Description](#project_overview)
 2. [Getting Started](#getting_started)
-	1. [Dependencies](#dependencies)
-	2. [Installing](#installing)
-	3. [Results](#executing)
+	1. [Installing](#installing)
+	2. [Results](#executing)
 3. [Authors](#authors)
 4. [License](#license)
 5. [Acknowledgement](#acknowledgement)
@@ -28,10 +27,6 @@ What was done:
 
 <a name="getting_started"></a>
 ## Getting Started
-
-<a name="dependencies"></a>
-### Dependencies
-
 
 <a name="installing"></a>
 ### Installing
