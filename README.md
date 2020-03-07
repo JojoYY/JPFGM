@@ -1,6 +1,7 @@
-# Kaggle Competition: Home Credit Default Risk (The JPFGM Team)
+# Kaggle Competition: Home Credit Default Risk 
+## (The JPFGM Team)
 
-![Intro Pic](title.png)
+![Intro Pic](assets/title.png)
 
 ## Table of Contents
 1. [Description](#project_overview)
