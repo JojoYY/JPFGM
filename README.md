@@ -42,11 +42,8 @@ Ranked top-14% among 7,198 teams competing (our AUC score: 0.79309, the winning 
 <a name="authors"></a>
 ## Authors
 
-[Geovani Montoya](https://github.com/geovani-montoya)
-
-[Portfolio website](https://geovani-montoya.github.io)
-
-[LinkedIn](https://www.linkedin.com/in/geovani-montoya/)
+[Geovani Montoya](https://github.com/geovani-montoya), 
+[Portfolio website](https://geovani-montoya.github.io), [LinkedIn](https://www.linkedin.com/in/geovani-montoya/)
 
 [Feishu Wu](https://github.com/FeishuWu)
 
